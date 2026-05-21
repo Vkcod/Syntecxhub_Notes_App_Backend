@@ -16,6 +16,12 @@ const noteSchema = new mongoose.Schema(
       default: "General",
       trim: true
     },
+    tags: [
+      {
+        type: String,
+        trim: true
+      }
+    ],
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -34,5 +40,13 @@ const noteSchema = new mongoose.Schema(
     timestamps: true
   }
 );
+
+// Text index for search
+noteSchema.index({
+  title: "text",
+  content: "text",
+  category: "text",
+  tags: "text"
+});
 
 module.exports = mongoose.model("Note", noteSchema);
