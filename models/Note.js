@@ -11,6 +11,11 @@ const noteSchema = new mongoose.Schema(
       type: String,
       required: [true, "Content is required"]
     },
+    category: {
+      type: String,
+      default: "General",
+      trim: true
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

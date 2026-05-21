@@ -4,7 +4,7 @@ const User = require("../models/User");
 // Create Note
 const createNote = async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { title, content, category } = req.body;
 
     if (!title || !content) {
       return res.status(400).json({
@@ -16,6 +16,7 @@ const createNote = async (req, res) => {
     const note = await Note.create({
       title,
       content,
+      category: category || "General",
       user: req.user._id
     });
 
